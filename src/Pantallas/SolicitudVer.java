@@ -5,12 +5,14 @@
  */
 package Pantallas;
 
+import Clases.SolicitudManejador;
+
 /**
  *
  * @author tepic
  */
 public class SolicitudVer extends javax.swing.JFrame {
-
+SolicitudManejador manejador;
     /**
      * Creates new form SolicitudVer
      */
@@ -34,11 +36,16 @@ public class SolicitudVer extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablasoli = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
@@ -95,7 +102,7 @@ public class SolicitudVer extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablasoli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -119,12 +126,12 @@ public class SolicitudVer extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tablasoli);
+        if (tablasoli.getColumnModel().getColumnCount() > 0) {
+            tablasoli.getColumnModel().getColumn(0).setResizable(false);
+            tablasoli.getColumnModel().getColumn(1).setResizable(false);
+            tablasoli.getColumnModel().getColumn(2).setResizable(false);
+            tablasoli.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel1.setText("BUSCAR");
@@ -173,6 +180,14 @@ public class SolicitudVer extends javax.swing.JFrame {
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_jLabel12MouseClicked
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        
+        manejador= new SolicitudManejador();
+        tablasoli.setModel(manejador.VerSolicitudes());
+        
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -217,7 +232,7 @@ public class SolicitudVer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tablasoli;
     // End of variables declaration//GEN-END:variables
 }
