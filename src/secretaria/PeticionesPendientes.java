@@ -15,7 +15,7 @@ import javax.swing.JTable;
  * @author tepic
  */
 public class PeticionesPendientes extends javax.swing.JFrame {
-
+String a1,a2,a3,a4;
     /**
      * Creates new form PeticionesPendientes
      */
@@ -194,17 +194,26 @@ public void cambiaId(String idUsu){
 
     private void PendienteAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PendienteAMouseClicked
         // TODO add your handling code here:
-
+//table.addColumn("Folio");
+//            table.addColumn("Fecha Salida");
+//            table.addColumn("Actividad");
+//            table.addColumn("Lugar");
+//            table.addColumn("Necesita Vehiculo");
+//            table.addColumn("Nombre Empleado ");
+//            table.addColumn("Fecha Peticion");
+//            table.addColumn("Puesto Procedencia");
+//            table.addColumn("Area Procediencia");
         int fila;
         fila=PendienteA.getSelectedRow();
         if(evt.getClickCount() == 2){
-
+          
           VistaPeticiones vista= new VistaPeticiones();
-        vista.setVista(PendienteA.getValueAt(fila, 0).toString(),PendienteA.getValueAt(fila,1).toString(), PendienteA.getValueAt(fila, 2).toString(),PendienteA.getValueAt(fila, 3).toString(),PendienteA.getValueAt(fila, 4).toString() ,PendienteA.getValueAt(fila, 5).toString());
-        //SolictudesManejador manejador= new SolictudesManejador();
+         vista.setVista(PendienteA.getValueAt(fila, 0).toString(),PendienteA.getValueAt(fila, 1).toString(), PendienteA.getValueAt(fila, 2).toString(), PendienteA.getValueAt(fila, 5).toString(), PendienteA.getValueAt(fila, 3).toString(), PendienteA.getValueAt(fila, 4).toString());
+//SolictudesManejador manejador= new SolictudesManejador();
         // String[] arreglo=manejador.InformacionUsuario(PendienteA.getValueAt(fila, 0).toString());
-         
-        //vista.setSolicitanteinfo(arreglo[0].toString(), PendienteA.getValueAt(fila, 6).toString(), arreglo[1].toString(), arreglo[2].toString());
+         llenaDatosSolitante(PendienteA.getValueAt(fila, 0).toString());
+        vista.setSolicitanteinfo(a1, PendienteA.getValueAt(fila, 5).toString(), a2, a3);
+        vista.setIdUsuario(idUsuario.getText());
         vista.setVisible(true);
         
         
@@ -213,6 +222,16 @@ public void cambiaId(String idUsu){
 
     }//GEN-LAST:event_PendienteAMouseClicked
 
+    
+    public void llenaDatosSolitante(String idfolio){
+        SolictudesManejador manejador= new SolictudesManejador();
+       String[] datos=manejador.InformacionUsuario(idfolio);
+       a1=datos[0];
+       a2=datos[1];
+       a3=datos[2];
+       
+        
+    }
      
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

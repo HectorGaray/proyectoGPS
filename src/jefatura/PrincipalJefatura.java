@@ -56,7 +56,7 @@ public class PrincipalJefatura extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nombre = new javax.swing.JLabel();
+        nombreCampo = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -170,8 +170,8 @@ public class PrincipalJefatura extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel2.setText("BIENVENIDO SISTEMA VIATICOS:");
 
-        nombre.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        nombre.setText("HECTOR ");
+        nombreCampo.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        nombreCampo.setText("HECTOR ");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete-button.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -207,13 +207,13 @@ public class PrincipalJefatura extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(156, 156, 156))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(nombre)
+                        .addComponent(nombreCampo)
                         .addGap(137, 137, 137)
                         .addComponent(idUsuario)
                         .addGap(120, 120, 120))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(214, 214, 214))))
+                        .addGap(203, 203, 203))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +227,7 @@ public class PrincipalJefatura extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombre)
+                    .addComponent(nombreCampo)
                     .addComponent(idUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
@@ -273,7 +273,7 @@ public class PrincipalJefatura extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     public void setTitulo(String nombrecon,String idUsuariocon){
-        nombre.setText(nombrecon);
+        nombreCampo.setText(nombrecon);
         idUsuario.setText(idUsuariocon);
         
     }
@@ -347,6 +347,6 @@ public class PrincipalJefatura extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
-    private javax.swing.JLabel nombre;
+    private javax.swing.JLabel nombreCampo;
     // End of variables declaration//GEN-END:variables
 }

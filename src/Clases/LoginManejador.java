@@ -54,7 +54,7 @@ public class LoginManejador {
          String completoNombre="";
         try {
             
-            String sql = "select CONCAT(p.nombre,' ',p.apellido_pa,' ',apellido_ma)from personal p,usuario u where personal_id_personal=puesto_id_puesto and usuario='Hector'";
+            String sql = "select CONCAT(p.nombre,' ',p.apellido_pa,' ',apellido_ma)from personal p,usuario u where personal_id_personal=p.id_personal and usuario='"+nombreCmpo+"';";
             conexion = db.getConexion(); //obtenemos conexion 
             Statement st = conexion.createStatement(); //crear obteno de consulta
             ResultSet resultados = st.executeQuery(sql); //ejecutar consulta
@@ -85,8 +85,7 @@ public class LoginManejador {
         String idPuesto="";
         try {
             
-            String sql = "select puesto from puesto pu,usuario u, personal pe "
-                    + "where puesto_id_puesto=personal_id_personal and id_puesto=puesto_id_puesto and u.usuario='"+usuario+"'";
+            String sql ="select  p.puesto  from personal, puesto p,usuario r where puesto_id_puesto=id_puesto and personal_id_personal=id_personal and r.usuario='"+usuario+"'";
             conexion = db.getConexion(); //obtenemos conexion 
             Statement st = conexion.createStatement(); //crear obteno de consulta
             ResultSet resultados = st.executeQuery(sql); //ejecutar consulta

@@ -260,14 +260,14 @@ LoginManejador nuevo;
             PrincipalJefatura jefe= new PrincipalJefatura();
             jefe.setTitulo(nuevo.nombreUsuario(usuario.getText()), nuevo.idUsuario(usuario.getText()));
             jefe.setVisible(true);
-            
+            this.dispose();
             
         }
         if(nombre.equalsIgnoreCase("secretaria")){
             PrincipalSecretaria secre= new PrincipalSecretaria();
             secre.setVisible(true);
             secre.setTitulo(nuevo.nombreUsuario(usuario.getText()), nuevo.idUsuario(usuario.getText()));
-            this.disable();
+            this.dispose();
             
         }
         if(nombre.equalsIgnoreCase("Presidencia")){

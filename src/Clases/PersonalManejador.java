@@ -26,26 +26,27 @@ public class PersonalManejador {
     }
     
     
-    public DefaultTableModel MisPeticiones(){
+    public DefaultTableModel MisPeticiones(String idUsu){
         
         
          DefaultTableModel table = new DefaultTableModel();
 
         try {
-            table.addColumn("Folio");
-            table.addColumn("Fecha Salida");
-            table.addColumn("Actividad");
-            table.addColumn("nombre");
-            table.addColumn("Lugar");
-            table.addColumn("Con Vehiculo");
-            table.addColumn("fecha peticion");
+            table.addColumn("Folio:");
+            table.addColumn("Fecha Salida:");
+            table.addColumn("Actividad:");
+            table.addColumn("Lugar:");
+            table.addColumn("Nombre Empleado:");
+            table.addColumn("Con Vehiculo:");
+            table.addColumn("Fecha peticion");
         
             
             
             
             //sql
-            String sql = "select p.folio, p.fecha_ini,p.actividad_rea,p.lugar_destino,p.vehiculo_inclui, concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre,fecha_emision from peticion p, personal per"
-                    + " where p.personal_id_personal=per.id_personal;";
+            String sql = "select p.folio, p.fecha_ini,p.actividad_rea,p.lugar_destino,p.vehiculo_inclui, concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre,fecha_emision" +
+                    " from peticion p, personal per "+
+            "where personal_id_personal=per.id_personal and usuario_id_usuario="+idUsu+"";
             Connection c = db.getConexion();
             Statement st = c.createStatement();
             Object datos[] = new Object[7];
@@ -141,12 +142,12 @@ public class PersonalManejador {
             table.addColumn("Folio");
             table.addColumn("Fecha Salida");
             table.addColumn("Actividad");
-            table.addColumn("nombre");
             table.addColumn("Lugar");
-            table.addColumn("Con Vehiculo");
-            table.addColumn("fecha peticion");
-            table.addColumn("puesto");
-            table.addColumn("area procediencia");
+            table.addColumn("Necesita Vehiculo");
+            table.addColumn("Nombre Empleado ");
+            table.addColumn("Fecha Peticion");
+            table.addColumn("Puesto Procedencia");
+            table.addColumn("Area Procediencia");
             
             
             

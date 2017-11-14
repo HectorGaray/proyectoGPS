@@ -68,6 +68,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="folioEti" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="id" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -81,11 +83,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel15" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="folioEti" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel15" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="folioEti" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="id" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -140,6 +145,11 @@
             <Property name="text" type="java.lang.String" value="001"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="id">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel9"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
@@ -172,9 +182,12 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lugarCampo" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                              <Component id="necesitaCampo" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="actividadCampo" min="-2" pref="774" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="actividadCampo" min="-2" pref="774" max="-2" attributes="0"/>
+                                      <Component id="salida" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -190,11 +203,11 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="necesitaCampo" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="asignado" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                                       <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                                  <Component id="asignado" min="-2" pref="171" max="-2" attributes="0"/>
+                                  <Component id="destino" min="-2" pref="171" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -203,13 +216,6 @@
                   </Group>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="salida" min="-2" pref="171" max="-2" attributes="0"/>
-                      <EmptySpace pref="943" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="636" max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -232,8 +238,9 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="necesitaCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                       <Component id="asignado" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="destino" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="salida" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -254,17 +261,10 @@
                   </Group>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lugarCampo" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="necesitaCampo" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="salida" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace pref="285" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -311,11 +311,11 @@
         </Component>
         <Component class="javax.swing.JTextField" name="salida">
         </Component>
+        <Component class="javax.swing.JTextField" name="destino">
+        </Component>
         <Component class="javax.swing.JTextField" name="asignado">
         </Component>
         <Component class="javax.swing.JTextField" name="necesitaCampo">
-        </Component>
-        <Component class="javax.swing.JTextField" name="lugarCampo">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
         </Component>
@@ -497,6 +497,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="REALIZAR SOLICITUD DE ESTA PETICION"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonSecreMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
