@@ -68,15 +68,18 @@ public class SolictudesManejador {
 //    select concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre, r.puesto, a.area from area a, puesto r,personal per,usuario u where personal_id_personal=id_personal and puesto_id_puesto=id_puesto and area_id_area=id_area and id_usuario=1
  
 
-public boolean NuevaSolicitudNueva(String fechaSalida,String necesita,String lugar,String actividad,String idPersona,String idUsuario){
+public boolean NuevaSolicitudSinVe(String fechaSalida,String necesita,String lugar,String actividad,String perno,String fechaLlegada,String idFolio,String idUsuario){
         
         conexion=db.getConexion();
         
         
+        
+        //sin vehiculo        
+        
         try {
             Statement st = conexion.createStatement();
-            String sql= "INSERT INTO `viaticos`.`peticion` (`fecha_ini`, `actividad_rea`, `lugar_destino`, `vehiculo_inclui`, `personal_id_personal`, `usuario_id_usuario`, `fecha_emision`)"
-                    + " VALUES ('"+fechaSalida+"', '"+actividad+"', '"+lugar+"', '"+necesita+"', '"+idPersona+"', '"+idUsuario+"', curdate());";
+            String sql= "INSERT INTO `viaticos`.`solicitud` (`fecha_salida`, `fecha_emision`, `lugar`, `actividad`, `pernotado`, `estado_solicitud`, `fecha_retorno`, `usuario_id_usuario`, `peticion_folio`) "
+                    + "VALUES ('"+fechaSalida+"', curdate(), '"+lugar+"', '"+actividad+"', '"+perno+"', 'EN REVISION', '"+fechaLlegada+"', '"+idUsuario+"', '"+idFolio+"');";
 //            String sql = "INSERT INTO `viaticos`.`peticion` "
 //                    + "(`fecha_ini`, `actividad_rea`, `lugar_destino`, `vehiculo_inclui`,"
 //                    + " `personal_id_personal`, `usuario_id_usuario`) VALUES ('"+fechaSalida+"', '"+actividad+"', '"+lugar+"', '"+necesita+"', '"+idPersona+"', '"+idUsuario+"');";
@@ -97,6 +100,8 @@ public boolean NuevaSolicitudNueva(String fechaSalida,String necesita,String lug
         
         
     }
+
+
 public DefaultTableModel Solicitudes(){
         
         

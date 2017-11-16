@@ -9,6 +9,7 @@ import Clases.PersonalManejador;
 import Clases.PeticionManejador;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  *
@@ -18,6 +19,7 @@ public class PeticionViatico extends javax.swing.JFrame {
 PeticionManejador manejador;
 PersonalManejador manejadorPer;
 String usuarioid="";
+int ErrorTipo;
 
     
     /**
@@ -43,11 +45,6 @@ String usuarioid="";
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         campoFechaSalida = new com.toedter.calendar.JDateChooser();
@@ -66,6 +63,10 @@ String usuarioid="";
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -75,59 +76,6 @@ String usuarioid="";
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete-button.png"))); // NOI18N
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-        });
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/minimize.png"))); // NOI18N
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
-            }
-        });
-
-        jLabel13.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel13.setText("Peticion de viatico");
-
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 615, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 80));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DATOS DEL VIATICO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 11))); // NOI18N
@@ -166,11 +114,11 @@ String usuarioid="";
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(campoFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -258,7 +206,7 @@ String usuarioid="";
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 920, 330));
 
-        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
@@ -296,25 +244,56 @@ String usuarioid="";
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 920, 70));
 
+        jPanel6.setBackground(new java.awt.Color(242, 48, 177));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("AGREGAR UN NUEVA SOLICITUD");
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/minus-sign.png"))); // NOI18N
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir2.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel11))
+                    .addComponent(jLabel3))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 78));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-     
-        
-       this.setVisible(false);
-       this.dispose();
-       
-    }//GEN-LAST:event_jLabel11MouseClicked
-
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        // TODO add your handling code here:
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_jLabel12MouseClicked
-
-    private void necesarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necesarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_necesarioActionPerformed
 
     
     public void idRealizo(String id){
@@ -336,6 +315,26 @@ String usuarioid="";
         
     if(validaPeticion()==false){
         
+         switch (this.ErrorTipo) {
+                    case 1:
+                    JOptionPane.showMessageDialog(this, "Campo Lugar Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                    break;
+                    case 2:
+                    JOptionPane.showMessageDialog(this, "Campo Fecha Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                    break;
+                    case 3:
+                    JOptionPane.showMessageDialog(this, "Campo Actividad Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                    break;
+                    case 4:
+                    JOptionPane.showMessageDialog(this, "Campo Fecha Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                    break;
+                    case 5:
+                    JOptionPane.showMessageDialog(this, "Selecciona Un Empleado Porfavor","Error Campos Vacios",ERROR_MESSAGE);
+                    break;
+                    }//switch para saber que campo no se valido
+        
+        
+        
     }else{
         
         
@@ -344,7 +343,7 @@ String usuarioid="";
         String FechaSalida = formato.format(campoFechaSalida.getDate());
       String idPersonalCombo=manejadorPer.id_persona((String)ComboPersonal.getSelectedItem());
     if(manejador.insertaPeticion(FechaSalida, necesitaVehi(), campoLugar.getText(), campoActividad.getText(), idPersonalCombo, usuarioid)){
-        JOptionPane.showMessageDialog(this, "se guardo una peticion de solicitud", "petioncion guarda", HEIGHT);
+        JOptionPane.showMessageDialog(this, "Peticion Enviada Con Exito", "Peticion Realizada", HEIGHT);
         vaciaCampos();
         ComboPersonal.setSelectedIndex(0);
     }
@@ -362,6 +361,17 @@ String usuarioid="";
     }//GEN-LAST:event_jLabel8MouseClicked
 
     
+    
+    public void Error(int tipo){
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     public void vaciaCampos(){
         campoLugar.setText("");
         campoActividad.setText("");
@@ -378,33 +388,49 @@ String usuarioid="";
         
     }//GEN-LAST:event_formWindowActivated
 
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        // TODO add your handling code here:
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void necesarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necesarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_necesarioActionPerformed
+
     
     
     
     public boolean validaPeticion(){
         boolean paso=true;
         if(campoLugar.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Campo lugar vacio");
+            this.ErrorTipo=1;//error lugar
             paso=false;
         }
         if(campoFechaSalida.toString()==""){
-            JOptionPane.showMessageDialog(this,"Campo fecha salida vacia");
+            this.ErrorTipo=2;//error Fecha
             paso=false;
         }
         
          
          if(campoActividad.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Campo actividad salida vacia");
+            this.ErrorTipo=3;
             paso=false;
         }
-         if(String.valueOf(campoFechaSalida.getDate()).equals("null")){
-              JOptionPane.showMessageDialog(this,"Campo fecha salida vacia");
+         if(campoFechaSalida.getDate()==null){
+              this.ErrorTipo=4;
               paso=false;
          }
         
          if(ComboPersonal.getSelectedItem().equals("Seleccione un empleado")){
-             JOptionPane.showMessageDialog(this,"Selecciona a ala personal");
+             this.ErrorTipo=5;
              paso=false;
+             
          }
          return paso;
     }
@@ -462,18 +488,17 @@ String usuarioid="";
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JCheckBox necesario;

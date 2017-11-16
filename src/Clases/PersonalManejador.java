@@ -153,8 +153,7 @@ public class PersonalManejador {
             
             
             //sql
-            String sql = "select p.folio, p.fecha_ini,p.actividad_rea,p.lugar_destino,p.vehiculo_inclui, concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre,fecha_emision, m.puesto, h.area from peticion p, personal per,puesto m,area h "
-                    + "where p.personal_id_personal=per.id_personal and m.area_id_area=id_area and m.id_puesto=per.puesto_id_puesto";
+            String sql = "select p.folio, p.fecha_ini,p.actividad_rea,p.lugar_destino,p.vehiculo_inclui, concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre,fecha_emision, m.puesto, h.area from peticion p, personal per,puesto m,area h where p.personal_id_personal=per.id_personal and m.area_id_area=id_area and m.id_puesto=per.puesto_id_puesto and p.estado_p ='no solicitada';";
             Connection c = db.getConexion();
             Statement st = c.createStatement();
             Object datos[] = new Object[9];
