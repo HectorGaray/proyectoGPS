@@ -30,6 +30,36 @@ public class SolictudesManejador {
     }
     
    
+   public boolean atualizaEstadoPeticion(String id){
+         conexion = db.getConexion();
+
+         try {
+
+            Statement st = conexion.createStatement();
+            String sql = "UPDATE `viaticos`.`peticion` SET `estado_p`='solicitada' WHERE `folio`='"+id+"';";
+            st.executeUpdate(sql);
+            conexion.close();
+
+        } //try  
+        catch (SQLException ex) {
+            Logger.getLogger(PersonalManejador.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+
+        }
+
+        return true;
+        
+        
+        
+        
+    }
+    
+        
+        
+        
+        
+    
+   
    
    public String[] InformacionUsuario(String folioId){
         
@@ -68,7 +98,7 @@ public class SolictudesManejador {
 //    select concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre, r.puesto, a.area from area a, puesto r,personal per,usuario u where personal_id_personal=id_personal and puesto_id_puesto=id_puesto and area_id_area=id_area and id_usuario=1
  
 
-public boolean NuevaSolicitudSinVe(String fechaSalida,String necesita,String lugar,String actividad,String perno,String fechaLlegada,String idFolio,String idUsuario){
+public boolean NuevaSolicitudSinVe(String fechaSalida,String necesita,String lugar,String actividad,String perno,String fechaLlegada,String idFolio,String idUsuario,String idPersona){
         
         conexion=db.getConexion();
         
@@ -78,8 +108,43 @@ public boolean NuevaSolicitudSinVe(String fechaSalida,String necesita,String lug
         
         try {
             Statement st = conexion.createStatement();
-            String sql= "INSERT INTO `viaticos`.`solicitud` (`fecha_salida`, `fecha_emision`, `lugar`, `actividad`, `pernotado`, `estado_solicitud`, `fecha_retorno`, `usuario_id_usuario`, `peticion_folio`) "
-                    + "VALUES ('"+fechaSalida+"', curdate(), '"+lugar+"', '"+actividad+"', '"+perno+"', 'EN REVISION', '"+fechaLlegada+"', '"+idUsuario+"', '"+idFolio+"');";
+            String sql= "INSERT INTO `viaticos`.`solicitud` (`fecha_salida`, `fecha_emision`, `lugar`, `actividad`, `pernotado`, `estado_solicitud`, `fecha_retorno`, `usuario_id_usuario`, `peticion_folio`,`incluivehi`,`personal_id_personal`,`chofer`) "
+                    + "VALUES ('"+fechaSalida+"', curdate(), '"+lugar+"', '"+actividad+"', '"+perno+"', 'EN REVISION', '"+fechaLlegada+"', '"+idUsuario+"', '"+idFolio+"','"+"NO"+"','"+idPersona+"');";
+//            String sql = "INSERT INTO `viaticos`.`peticion` "
+//                    + "(`fecha_ini`, `actividad_rea`, `lugar_destino`, `vehiculo_inclui`,"
+//                    + " `personal_id_personal`, `usuario_id_usuario`) VALUES ('"+fechaSalida+"', '"+actividad+"', '"+lugar+"', '"+necesita+"', '"+idPersona+"', '"+idUsuario+"');";
+
+
+
+            st.executeUpdate(sql);
+
+            conexion.close();
+        } //try  
+        catch (SQLException ex) {
+            Logger.getLogger(SolictudesManejador.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
+        
+        
+        
+    }
+
+
+
+public boolean NuevaSolicitudConVehiculo(String fechaSalida,String necesita,String lugar,String actividad,String perno,String fechaLlegada,String idFolio,String idUsuario,String idPersona,String cho){
+        
+        conexion=db.getConexion();
+        
+        
+        
+        //sin vehiculo        
+        
+        try {
+            Statement st = conexion.createStatement();
+            String sql= "INSERT INTO `viaticos`.`solicitud` (`fecha_salida`, `fecha_emision`, `lugar`, `actividad`, `pernotado`, `estado_solicitud`, `fecha_retorno`, `usuario_id_usuario`, `peticion_folio`,`incluivehi`,`personal_id_personal`,`chofer`) "
+                    + "VALUES ('"+fechaSalida+"', curdate(), '"+lugar+"', '"+actividad+"', '"+perno+"', 'EN REVISION', '"+fechaLlegada+"', '"+idUsuario+"', '"+idFolio+"','"+"SI"+"','"+idPersona+"','"+cho+"')";
 //            String sql = "INSERT INTO `viaticos`.`peticion` "
 //                    + "(`fecha_ini`, `actividad_rea`, `lugar_destino`, `vehiculo_inclui`,"
 //                    + " `personal_id_personal`, `usuario_id_usuario`) VALUES ('"+fechaSalida+"', '"+actividad+"', '"+lugar+"', '"+necesita+"', '"+idPersona+"', '"+idUsuario+"');";
@@ -100,7 +165,6 @@ public boolean NuevaSolicitudSinVe(String fechaSalida,String necesita,String lug
         
         
     }
-
 
 public DefaultTableModel Solicitudes(){
         
@@ -147,7 +211,7 @@ public DefaultTableModel Solicitudes(){
 
         
     }
- public String RetornoEstado(String folioId){
+public String RetornoEstado(String folioId){
         
         String estado="";
         
@@ -177,9 +241,82 @@ public DefaultTableModel Solicitudes(){
 
        
     }
+public DefaultTableModel MisSolicitudesEnvidas(String id){
+        
+        
+         DefaultTableModel table = new DefaultTableModel();
 
+        try {
+            table.addColumn("Folio");
+            table.addColumn("Fecha de salida");
+            table.addColumn("Fecha de retorno");
+            table.addColumn("Estado de solicitud");
+            table.addColumn("Pernotando");
+            table.addColumn("Fecha de enviado");
+            
+            
+//select s.peticion_folio,s.fecha_salida,s.fecha_retorno,s.estado_solicitud,s.pernotado,s.fecha_emision from solicitud s where usuario_id_usuario=1 ;
+            //sql
+            String sql = "select s.peticion_folio,s.fecha_salida,s.fecha_retorno,s.estado_solicitud,s.pernotado,s.fecha_emision from solicitud s where usuario_id_usuario='"+id+"';";
+            Connection c = db.getConexion();
+            Statement st = c.createStatement();
+            Object datos[] = new Object[6];
+            ResultSet rs = st.executeQuery(sql);
 
+            //llenar tabla
+            while (rs.next()) {
+                datos[0] = rs.getObject(1);
+                datos[1] = rs.getObject(2);
+                datos[2] = rs.getObject(3);
+                datos[3] = rs.getObject(4);
+                datos[4] = rs.getObject(5);
+                datos[5] = rs.getObject(6);
+                
+                table.addRow(datos);
+           }
 
+            c.close();
+        } catch (SQLException ex) {
+            System.out.printf("Error getTabla Cliente SQL");
+            Logger.getLogger(SolictudesManejador.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            return table;
+        }
+
+        
+    }
+
+public String idPersonaCascada(String folio){
+        
+        String id="";
+        
+        try {
+            
+            String sql = "SELECT personal_id_personal from peticion where folio="+folio+";";
+
+            conexion = db.getConexion(); //obtenemos conexion 
+            Statement st = conexion.createStatement(); //crear obteno de consulta
+            ResultSet resultados = st.executeQuery(sql); //ejecutar consulta
+            //vemos si encontro coincidencias
+            if (resultados.next()) {
+                
+                id=resultados.getObject(1).toString();
+            }
+
+            conexion.close();
+        } //esAdministrador
+        catch (SQLException ex) {
+            Logger.getLogger(SolictudesManejador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, "No Hay Conexion a la Base de Datos");
+        }
+
+        return id;
+        
+
+       
+    }
 
 
 

@@ -58,7 +58,7 @@ public void cambiaId(String idUsu){
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         PendienteA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,7 +132,7 @@ public void cambiaId(String idUsu){
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                         .addComponent(idUsuario)
                         .addGap(32, 32, 32)
                         .addComponent(jLabel16)
@@ -161,12 +161,8 @@ public void cambiaId(String idUsu){
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,11 +203,24 @@ public void cambiaId(String idUsu){
         if(evt.getClickCount() == 2){
           
           VistaPeticiones vista= new VistaPeticiones();
-         vista.setVista(PendienteA.getValueAt(fila, 0).toString(),PendienteA.getValueAt(fila, 1).toString(), PendienteA.getValueAt(fila, 2).toString(), PendienteA.getValueAt(fila, 5).toString(), PendienteA.getValueAt(fila, 3).toString(), PendienteA.getValueAt(fila, 4).toString());
+         vista.setVista(PendienteA.getValueAt(fila, 0).toString(),PendienteA.getValueAt(fila, 1).toString(), PendienteA.getValueAt(fila, 2).toString(), PendienteA.getValueAt(fila, 3).toString(), PendienteA.getValueAt(fila, 5).toString(), PendienteA.getValueAt(fila, 4).toString());
+
+//table.addColumn("Folio");
+//            table.addColumn("Fecha Salida");
+//            table.addColumn("Actividad");
+//            table.addColumn("Lugar");
+//            table.addColumn("Necesita Vehiculo");
+//            table.addColumn("Nombre Empleado ");
+//            table.addColumn("Fecha Peticion");
+//            table.addColumn("Puesto Procedencia");
+//            table.addColumn("Area Procediencia");
+
+
+
 //SolictudesManejador manejador= new SolictudesManejador();
         // String[] arreglo=manejador.InformacionUsuario(PendienteA.getValueAt(fila, 0).toString());
          llenaDatosSolitante(PendienteA.getValueAt(fila, 0).toString());
-        vista.setSolicitanteinfo(a1, PendienteA.getValueAt(fila, 5).toString(), a2, a3);
+        vista.setSolicitanteinfo(a1, PendienteA.getValueAt(fila, 6).toString(), a2, a3);
         vista.setIdUsuario(idUsuario.getText());
         vista.setVisible(true);
         
@@ -241,7 +250,7 @@ public void cambiaId(String idUsu){
     }//GEN-LAST:event_formWindowActivated
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
-        // TODO add your handling code here:
+       
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_jLabel16MouseClicked
 

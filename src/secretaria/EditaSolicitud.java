@@ -5,12 +5,19 @@
  */
 package secretaria;
 
+import Clases.SolictudesManejador;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tepic
  */
 public class EditaSolicitud extends javax.swing.JFrame {
-
+String estapernotando="";
+String incluidoVehiculo="";
+String idVehiculo="";
+String chofer="";
     /**
      * Creates new form EditaSolicitud
      */
@@ -29,6 +36,16 @@ public class EditaSolicitud extends javax.swing.JFrame {
         
         
         
+    }
+    
+    
+    public void esChofer(){
+        
+        if(choferCheck.isSelected()){
+            chofer="SI";
+        }else{
+            chofer="NO";
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +79,7 @@ public class EditaSolicitud extends javax.swing.JFrame {
         empleadoCampo = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         soliVehiculo = new javax.swing.JButton();
+        choferCheck = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -69,12 +87,13 @@ public class EditaSolicitud extends javax.swing.JFrame {
         idUsuario1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "LLENADO DE VIATICO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 11))); // NOI18N
@@ -105,6 +124,7 @@ public class EditaSolicitud extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("CAMBIAR FECHA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,8 +151,17 @@ public class EditaSolicitud extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setText("EMPLEADO:");
 
+        soliVehiculo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         soliVehiculo.setText("+ solicitar vehiculo");
         soliVehiculo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/car.png"))); // NOI18N
+        soliVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                soliVehiculoActionPerformed(evt);
+            }
+        });
+
+        choferCheck.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        choferCheck.setText("CHOFER");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -147,14 +176,16 @@ public class EditaSolicitud extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(siPernota)
                                 .addGap(26, 26, 26)
-                                .addComponent(noPernota))
+                                .addComponent(noPernota)
+                                .addGap(26, 26, 26)
+                                .addComponent(choferCheck))
                             .addComponent(jLabel4))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2)))
+                                .addGap(83, 83, 83)
+                                .addComponent(jScrollPane2))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -183,8 +214,8 @@ public class EditaSolicitud extends javax.swing.JFrame {
                                 .addComponent(jLabel15)
                                 .addGap(18, 18, 18)
                                 .addComponent(empleadoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 289, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(266, 266, 266))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,22 +243,20 @@ public class EditaSolicitud extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(siPernota)
-                            .addComponent(noPernota)))
+                            .addComponent(noPernota)
+                            .addComponent(choferCheck)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(necesario)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(soliVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(necesario))
+                    .addComponent(soliVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(empleadoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -302,12 +331,28 @@ public class EditaSolicitud extends javax.swing.JFrame {
                     .addComponent(folioId, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/send.png"))); // NOI18N
+        jButton2.setText("ENVIAR SOLICITUD");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,7 +360,9 @@ public class EditaSolicitud extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,9 +401,73 @@ public class EditaSolicitud extends javax.swing.JFrame {
         fecha1.setEditable(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void pernotaValida(){
+        if(siPernota.isSelected()){
+        estapernotando="si";
+        }else{
+            estapernotando="no";
+        }
+    }
+    
+    public void validaVehi(){
+        if(necesario.isSelected()){
+            incluidoVehiculo="si";
+        }else{
+            incluidoVehiculo="no";
+        }
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    SolictudesManejador manejador=new SolictudesManejador ();
+    pernotaValida();
+    validaVehi();
+    esChofer();
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String FechaRetorno = formato.format(fecha3.getDate());
+    if(incluidoVehiculo.equalsIgnoreCase("no")){
+   if(manejador.NuevaSolicitudSinVe(fecha1.getText(), incluidoVehiculo, campoLugar.getText(), campoActividad.getText(), estapernotando, FechaRetorno, folioId.getText(), idUsuario1.getText(),manejador.idPersonaCascada(folioId.getText()))){
+       if(manejador.atualizaEstadoPeticion(folioId.getText())){
+          JOptionPane.showMessageDialog(this, "Se a enviado un solicitud", "exito", HEIGHT); 
+       }
+       
+   }else{
+      JOptionPane.showMessageDialog(this, "No se envio", " NO exito", HEIGHT); 
+   }
+     }else{
+       if(manejador.NuevaSolicitudConVehiculo(fecha1.getText(), incluidoVehiculo, campoLugar.getText(), campoActividad.getText(), estapernotando, FechaRetorno, folioId.getText(), idUsuario1.getText(),manejador.idPersonaCascada(folioId.getText()),chofer)){
+         if(manejador.atualizaEstadoPeticion(folioId.getText())){
+          JOptionPane.showMessageDialog(this, "Se a enviado un solicitud", "exito", HEIGHT); 
+       }
+       }       
+    }
+
+//      if(manejador.NuevaSolicitudSinVe(fecha1.getText(), necesita, lugar, actividad, perno, fechaLlegada, idFolio, idUsuario)){
+//          
+//      }
+//    if(manejador.NuevaSolicitudSinVe(fechaSalida, necesita, lugar, actividad, perno, fechaLlegada, idFolio, idUsuario)){
+//        
+//    }else{
+//        
+//        
+//        
+//    }
+    
+       
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void soliVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soliVehiculoActionPerformed
+        // TODO add your handling code here:
+        SolicitaVehiculo nuevo= new SolicitaVehiculo();
+        
+       nuevo.setVisible(true);
+    }//GEN-LAST:event_soliVehiculoActionPerformed
+
     
     
-    public void semillena(String fecha,String lugar,String actividad,String necesita,String empleado ){
+    public void semillena(String fecha,String lugar,String actividad,String necesita,String empleado){
         
         fecha1.setText(fecha);
         campoLugar.setText(lugar);
@@ -365,7 +476,7 @@ public class EditaSolicitud extends javax.swing.JFrame {
             necesario.setSelected(true);
             soliVehiculo.setVisible(true);
         }
-        
+       
         empleadoCampo.setText(empleado);
         
         
@@ -409,6 +520,7 @@ public class EditaSolicitud extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea campoActividad;
     private javax.swing.JTextArea campoLugar;
+    private javax.swing.JCheckBox choferCheck;
     private javax.swing.JTextField empleadoCampo;
     private javax.swing.JTextField fecha1;
     private com.toedter.calendar.JDateChooser fecha2;
@@ -416,6 +528,7 @@ public class EditaSolicitud extends javax.swing.JFrame {
     private javax.swing.JLabel folioId;
     private javax.swing.JLabel idUsuario1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

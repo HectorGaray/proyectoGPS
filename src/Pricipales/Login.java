@@ -11,6 +11,7 @@ package Pricipales;
  *
  * @author tepic
  */
+import Administrador.PrincipalAdministracion;
 import jefatura.PrincipalJefatura;
 import secretaria.PrincipalSecretaria;
  import Clases.LoginManejador;
@@ -248,8 +249,14 @@ LoginManejador nuevo;
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
 
-        this.setVisible(false);
+        
+        int input = JOptionPane.showConfirmDialog(this,"Esta seguro que desea salir del sistema","Confirmar operacion",JOptionPane.YES_NO_CANCEL_OPTION);
+        
+        if(input==0){
+            this.setVisible(false);
         this.dispose();
+        }
+        
     }//GEN-LAST:event_jLabel11MouseClicked
 
     
@@ -272,6 +279,13 @@ LoginManejador nuevo;
         }
         if(nombre.equalsIgnoreCase("Presidencia")){
             PresidenciaPrincipal presi= new PresidenciaPrincipal();
+            presi.setVisible(true);
+            presi.setTitulo(nuevo.nombreUsuario(usuario.getText()), nuevo.idUsuario(usuario.getText()));
+            this.dispose();
+        
+        }
+        if(nombre.equalsIgnoreCase("Administracion")){
+            PrincipalAdministracion presi= new PrincipalAdministracion();
             presi.setVisible(true);
             presi.setTitulo(nuevo.nombreUsuario(usuario.getText()), nuevo.idUsuario(usuario.getText()));
             this.dispose();

@@ -44,7 +44,7 @@ public class PersonalManejador {
             
             
             //sql
-            String sql = "select p.folio, p.fecha_ini,p.actividad_rea,p.lugar_destino,p.vehiculo_inclui, concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre,fecha_emision" +
+            String sql = "select p.folio, p.fecha_ini,p.actividad_rea,p.lugar_destino, concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)nombre,p.vehiculo_inclui,fecha_emision" +
                     " from peticion p, personal per "+
             "where personal_id_personal=per.id_personal and usuario_id_usuario="+idUsu+"";
             Connection c = db.getConexion();
@@ -188,5 +188,35 @@ public class PersonalManejador {
 
         
     }
-  
+    
+    public boolean atualizaEstadoPeticion(String id){
+         conexion = db.getConexion();
+
+         try {
+
+            Statement st = conexion.createStatement();
+            String sql = "UPDATE `viaticos`.`peticion` SET `estado_p`='solicitada' WHERE `folio`='"+id+"';";
+            st.executeUpdate(sql);
+            conexion.close();
+
+        } //try  
+        catch (SQLException ex) {
+            Logger.getLogger(PersonalManejador.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+
+        }
+
+        return true;
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+      
 }
