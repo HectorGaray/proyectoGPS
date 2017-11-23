@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class ConexionBase {
     
     private static final String usuario = "root";
-    private static String contra = "masterkey";
+    private static String contra = "9247lunaenciso";
     private static String servidor="localhost";
     private static String database="viaticos";
     private Connection con;

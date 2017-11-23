@@ -3,11 +3,12 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<field name="Fecha" class="java.lang.String"/>
-	<field name="Nombre" class="java.lang.String"/>
-	<field name="Actividad" class="java.lang.String"/>
-	<field name="firma" class="java.lang.String"/>
-	<field name="field5" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT fecha_salida FROM solicitud]]>
+	</queryString>
+	<field name="fecha_salida" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -51,6 +52,10 @@
 			<line>
 				<reportElement x="134" y="13" width="189" height="1" uuid="8800aa88-81f9-4070-9ede-6587de90f5a3"/>
 			</line>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="20" uuid="31b4b0e0-3f0a-4825-a846-2af021208f9e"/>
+				<textFieldExpression><![CDATA[$F{fecha_salida}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
